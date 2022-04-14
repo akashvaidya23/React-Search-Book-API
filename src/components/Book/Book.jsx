@@ -17,7 +17,6 @@ const Book = () => {
     axios
       .get(`https://www.googleapis.com/books/v1/volumes?q=${input}`)
       .then((response) => {
-        console.log(response.data.items);
         setBtnText(response.data.items);
       });
   };
@@ -33,11 +32,12 @@ const Book = () => {
         </div>
         <div>
           <Display
-            className={styles.main}
-            value={btnText.map((element) => (
-              <ul>
-                <li key={element.id}>{element.volumeInfo.title}</li>
-              </ul>
+            value={btnText.map((element, index) => (
+              <div className={styles.list}>
+                <ul>
+                  <li key={index}>{element.volumeInfo.title}</li>
+                </ul>
+              </div>
             ))}
           />
         </div>
